@@ -9,7 +9,7 @@ const hello = (req, res) => {
 const data = (req, res) => {
   res.status(200).send({
     name: 'Sarah',
-    role: 'Student',
+    role: 'student',
   });
 };
 
