@@ -1,0 +1,19 @@
+{
+  "name": "server-deployment-practice",
+  "version": "1.0.0",
+  "description": "https://canvas.instructure.com/courses/4898196/assignments/30604099",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SarahTek/server-deployment-practice.git"
+  },
+  "author": "Sarah Teklemariam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SarahTek/server-deployment-practice/issues"
+  },
+  "homepage": "https://github.com/SarahTek/server-deployment-practice#readme"
+}
