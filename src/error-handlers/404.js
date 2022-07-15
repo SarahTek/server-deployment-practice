@@ -6,7 +6,7 @@
 // Import this into your server and set it up to be “used” after your other routes
 const makeError = (req, res) => {
   res.status(404).send('Not-Found');
-}
+};
 module.exports = {
   makeError,
-}
+};

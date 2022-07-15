@@ -48,9 +48,11 @@ describe('Node Server', () => {
     expect(response.status).toBe(500);
   });
 
-  it('knows about person', async () => {
-    let response = await request.get('/person/sarah');
-    expect(response.status).toBe(200);
-    expect(response.body.name).toMatch(/sarah/);
-  });
+//   it('knows about person', async () => {
+//     let response = await request.get('/person/name');
+//     expect(response.status).toBe(200);
+//     expect(response.body.name).toEqual({
+//        name: "Sarah",
+
+//   });
 });
