@@ -11,12 +11,16 @@
 - [GitHub Repo](https://github.com/SarahTek/server-deployment-practice)
 - [server-deployement-actions](https://github.com/SarahTek/server-deployment-practice/actions)
 - [ReadMe file](https://github.com/SarahTek/server-deployment-practice/blob/main/README.md)
-- [Pull requests](https://github.com/SarahTek/server-deployment-practice/pull/1)
 
-## Time
 
-- started 5 pm - 7:30 pm
+## Pull Requests
 
+- [Lab 01](https://github.com/SarahTek/server-deployment-practice/pull/1)
+- [Lab 02](https://github.com/SarahTek/server-deployment-practice/pull/3)
+
+## GitHub Actions
+
+- [Lab 02](https://github.com/SarahTek/server-deployment-practice/actions)
 ## Author: Sarah Teklemariam
 
 ## Collaborators: Martha Quintanilla-Ramirez

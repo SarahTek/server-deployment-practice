@@ -8,8 +8,6 @@ const {serverError} = require('./error-handlers/500');
 
 
 const hello = (req, res) => res.status(200).send('Hello, World');
-
-
 const data = (req, res) => {
   res.status(200).send({
     name: 'Sarah',
@@ -21,10 +19,8 @@ const person = (req, res) => {
   res.status(200).send({ name: req.params.name });
 };
 
-
 const app = express();
 app.use(logger);
-
 app.get('/', hello);
 app.get('/data', data);
 app.use(makeError);
