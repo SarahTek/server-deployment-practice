@@ -9,8 +9,7 @@
 // test setup
 
 const supertest = require('supertest');
-const server = require('../server.js');
-
+const server = require('../src/server');
 const request = supertest(server.app);
 
 describe('Node Server', () => {
@@ -37,5 +36,21 @@ describe('Node Server', () => {
       name: 'Sarah',
       role: 'student',
     });
+  });
+
+  it('should return a 404 bad route', async () => {
+    const response = await request.get('/makeError');
+    expect(response.status).toBe(404);
+  });
+
+  it('should respond 500 on an error', async () => {
+    const response = await request.get('/serverError');
+    expect(response.status).toBe(500);
+  });
+
+  it('knows about person', async () => {
+    let response = await request.get('/person/sarah');
+    expect(response.status).toBe(200);
+    expect(response.body.name).toMatch(/sarah/);
   });
 });
