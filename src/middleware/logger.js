@@ -1,7 +1,7 @@
 'use strict';
 
 const logger = (req, res, next) => {
-  console.log( req.method, res.url);
+  console.log( req.method, req.url);
   next();
 };
 module.exports = {

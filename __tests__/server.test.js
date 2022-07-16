@@ -27,32 +27,30 @@ describe('Node Server', () => {
     expect(response.status).toBe(200);
     expect(response.text).toBe('Hello, World');
   });
+}),
+it('returns some data', async () => {
+  const response = await request.get('/data');
 
-  it('returns some data', async () => {
-    const response = await request.get('/data');
-
-    expect(response.status).toBe(200);
-    expect(response.body).toEqual({
-      name: 'Sarah',
-      role: 'student',
-    });
+  expect(response.status).toBe(200);
+  expect(response.body).toEqual({
+    name: 'Sarah',
+    role: 'student',
   });
+});
 
-  it('should return a 404 bad route', async () => {
-    const response = await request.get('/makeError');
-    expect(response.status).toBe(404);
-  });
+it('should return a 404 bad route', async () => {
+  const response = await request.get('/something');
+  expect(response.status).toBe(404);
+});
 
-  it('should respond 500 on an error', async () => {
-    const response = await request.get('/serverError');
-    expect(response.status).toBe(500);
-  });
+it('should respond 500 on an error', async () => {
 
-//   it('knows about person', async () => {
-//     let response = await request.get('/person/name');
-//     expect(response.status).toBe(200);
-//     expect(response.body.name).toEqual({
-//        name: "Sarah",
+  const response = await request.get('/person');
+  expect(response.status).toBe(500);
+});
 
-//   });
+it('knows about person', async () => {
+  let response = await request.get('/person/Sarah');
+  expect(response.status).toBe(200);
+  expect(response.body.name).toEqual('Sarah');
 });
