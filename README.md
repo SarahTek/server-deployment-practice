@@ -13,7 +13,7 @@
 ## Pull Requests
 
 - [Lab 01](https://github.com/SarahTek/server-deployment-practice/pull/1)
-- [Lab 02](https://github.com/SarahTek/server-deployment-practice/pull/3)
+- [Lab 02](https://github.com/SarahTek/server-deployment-practice/pull/5)
 
 ## GitHub Actions
 
