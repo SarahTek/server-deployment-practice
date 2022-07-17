@@ -2,9 +2,16 @@
 
 const express = require('express');
 const {logger} = require('./middleware/logger');
+
+require('./db');
+
 const {validator} = require ('./middleware/validator');
+const { createMovie, listMovies, getMovie } = require('./models/movie');
+const { createPlant, listPlant, getPlant } = require('./models/plant');
+
 const {makeError} = require('./error-handlers/404');
 const {serverError} = require('./error-handlers/500');
+
 
 const app = express();
 app.use(express.json());
@@ -30,6 +37,15 @@ app.get('/', hello);
 app.get('/data', data);
 app.get('/person/:name', validator, person);
 app.get('/person', person);
+
+app.get('/movie',createMovie);
+app.post('/movie', listMovies);
+app.get('/movie/:id', getMovie);
+
+app.get('/movie',createPlant);
+app.post('/movie', listPlant);
+app.get('/movie/:id', getPlant);
+
 app.use('*', makeError);
 app.use(serverError);
 
