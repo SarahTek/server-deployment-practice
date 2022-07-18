@@ -6,8 +6,8 @@ const {logger} = require('./middleware/logger');
 require('./db');
 
 const {validator} = require ('./middleware/validator');
-const { createMovie, listMovies, getMovie } = require('./models/movie');
-const { createPlant, listPlant, getPlant } = require('./models/plant');
+const { createMovie, listMovies, getMovie, updateMovie, deleteMovie } = require('./routes/movie');
+const { createPlant, listPlant, getPlant, updatePlant, deletePlant } = require('./routes/plant');
 
 const {makeError} = require('./error-handlers/404');
 const {serverError} = require('./error-handlers/500');
@@ -41,10 +41,14 @@ app.get('/person', person);
 app.get('/movie',createMovie);
 app.post('/movie', listMovies);
 app.get('/movie/:id', getMovie);
+app.put('/movie/:id', updateMovie);
+app.delete('./movie', deleteMovie);
 
-app.get('/movie',createPlant);
-app.post('/movie', listPlant);
-app.get('/movie/:id', getPlant);
+app.get('/plant',createPlant);
+app.post('/plant', listPlant);
+app.get('/plant/:id', getPlant);
+app.put('/plant/:id', updatePlant);
+app.delete('./plant', deletePlant);
 
 app.use('*', makeError);
 app.use(serverError);
