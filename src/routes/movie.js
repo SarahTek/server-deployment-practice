@@ -28,11 +28,41 @@ const getMovie= async (req, res) => {
   }
 };
 
+
 // update
+const updateMovie = async (req, res ) => {
+  await Movie.update(
+    {
+      nameOfMovie: req.query.nameOfMovie,
+      typeOfMovie: req.query.typeOfMovie,
+      releaseDate: req.query.releaseDate,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+      returning : true,
+    });
+  res.status(200).send('Movie is updated');
+};
+
+
+//delete
+
+const deleteMovie = async (req, res) => {
+  await Movie.destroy({
+    where: {
+      id: req.params.id,
+    },
+  });
+  res.status(200).send('Movie is deleted');
+};
 
 
 module.exports = {
   createMovie,
   listMovies,
   getMovie,
+  updateMovie,
+  deleteMovie,
 };
