@@ -31,18 +31,16 @@ const getMovie= async (req, res) => {
 
 // update
 const updateMovie = async (req, res ) => {
-  await Movie.update(
-    {
-      nameOfMovie: req.query.nameOfMovie,
-      typeOfMovie: req.query.typeOfMovie,
-      releaseDate: req.query.releaseDate,
-    },
+  const [movieUpdate] =  await Movie.findAll(
     {
       where: {
         id: req.params.id,
       },
-      returning : true,
     });
+  movieUpdate.nameOfMovie = req.body.nameOfMovie,
+  movieUpdate.typeOfMovie= req.body.typeOfMovie,
+  movieUpdate.releaseDate= req.body.releaseDate,
+  await movieUpdate.save();
   res.status(200).send('Movie is updated');
 };
 
@@ -50,12 +48,15 @@ const updateMovie = async (req, res ) => {
 //delete
 
 const deleteMovie = async (req, res) => {
-  await Movie.destroy({
+  const deletedMovie = await Movie.destroy({
     where: {
       id: req.params.id,
     },
   });
-  res.status(200).send('Movie is deleted');
+  if(deletedMovie === 0) res.status(404).send('no movies found');
+  else{
+    res.status(200).send('Movie is deleted');
+  }
 };
 
 
