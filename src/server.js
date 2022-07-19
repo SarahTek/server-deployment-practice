@@ -38,17 +38,17 @@ app.get('/data', data);
 app.get('/person/:name', validator, person);
 app.get('/person', person);
 
-app.get('/movie',createMovie);
-app.post('/movie', listMovies);
+app.post('/movie',createMovie);
+app.get('/movie', listMovies);
 app.get('/movie/:id', getMovie);
 app.put('/movie/:id', updateMovie);
-app.delete('./movie', deleteMovie);
+app.delete('/movie/:id', deleteMovie);
 
-app.get('/plant',createPlant);
-app.post('/plant', listPlant);
+app.post('/plant',createPlant);
+app.get('/plant', listPlant);
 app.get('/plant/:id', getPlant);
 app.put('/plant/:id', updatePlant);
-app.delete('./plant', deletePlant);
+app.delete('/plant/:id', deletePlant);
 
 app.use('*', makeError);
 app.use(serverError);
