@@ -2,8 +2,8 @@
 
 const express = require('express');
 const {logger} = require('./middleware/logger');
-
 require('./db');
+const { db } = require('./db');
 
 const {validator} = require ('./middleware/validator');
 const { createMovie, listMovies, getMovie, updateMovie, deleteMovie } = require('./routes/movie');
@@ -53,7 +53,11 @@ app.delete('/plant/:id', deletePlant);
 app.use('*', makeError);
 app.use(serverError);
 
-function start(port) {
+const shouldSyncInStart = true;
+async function start(port) {
+  if (shouldSyncInStart){
+    await db.sync();
+  }
   app.listen(port, () => console.log(`Server listening on port ${port}`));
 }
 

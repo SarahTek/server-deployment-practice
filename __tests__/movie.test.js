@@ -1,21 +1,44 @@
-const { Plant } = require('../src/db');
-const { movie } = require('../src/models/movie');
+const supertest = require ('supertest');
+const { db } = require('../src/db');
+const server = require('../src/server');
+const request = supertest(server.app);
 
-describe('movie', () => {
-  it('logs via console.log', () => {
-    jest.spyOn(console, 'log').mockImplementation();
-    const req = { method: 'GET', url: '/' };
-    const res = {};
-    const next = () => {};
-
-    movie(req, res, next);
-    expect(console.log).toHaveBeenCalledWith('GET', '/');
+describe('Movie', () => {
+  beforeEach(async () => {
+    await db.sync();
   });
-  it('calls next()', () => {
-    const req = { method: 'GET', url: '/' };
-    const res = {};
-    const next = jest.fn();
-    Plant(req, res, next);
-    expect(next).toHaveBeenCalled();
+
+  it ('create a movie', async () => {
+    let response = await request.post ('/movie').send({
+      nameOfMovie: 'House of Cards',
+      typeOfMovie: 'Politics and Drama',
+      releaseDate: new Date(2016),
+    });
+    expect(response.status).toBe(200);
+    expect(response.body).toMatchObject({
+      nameOfMovie: 'House of Cards',
+      typeOfMovie: 'Politics and Drama',
+      releaseDate: new Date(2016).toISOString(),
+    });
+  });
+
+
+  it( 'gets a movie with their Id', async () => {
+    let MovieReq = await request.post('/movie').send({
+      nameOfMovie: 'House of Cards',
+      typeOfMovie: 'Politics and Drama',
+      releaseDate: 2016,
+    });
+    expect(MovieReq.status).toBe(200);
+    const newId = MovieReq.body.id;
+
+    let newRes = await request.get(`/movie/${newId}`);
+    expect(newRes.status).toBe(200);
+    expect(newRes.body).toMatchObject({
+      id: newId,
+      nameOfMovie: 'House of Cards',
+      typeOfMovie: 'Politics and Drama',
+      releaseDate: new Date(2016).toISOString(),
+    });
   });
 });
