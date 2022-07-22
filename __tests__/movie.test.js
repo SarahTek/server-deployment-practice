@@ -9,7 +9,7 @@ describe('Movie', () => {
   });
 
   it ('create a movie', async () => {
-    let response = await request.post ('./movie').send({
+    let response = await request.post ('/movie').send({
       nameOfMovie: 'House of Cards',
       typeOfMovie: 'Politics and Drama',
       releaseDate: new Date(2016),
@@ -18,7 +18,7 @@ describe('Movie', () => {
     expect(response.body).toMatchObject({
       nameOfMovie: 'House of Cards',
       typeOfMovie: 'Politics and Drama',
-      releaseDate: new Date(2016),
+      releaseDate: new Date(2016).toISOString(),
     });
   });
 
@@ -31,16 +31,14 @@ describe('Movie', () => {
     });
     expect(MovieReq.status).toBe(200);
     const newId = MovieReq.body.id;
+
     let newRes = await request.get(`/movie/${newId}`);
     expect(newRes.status).toBe(200);
     expect(newRes.body).toMatchObject({
       id: newId,
       nameOfMovie: 'House of Cards',
       typeOfMovie: 'Politics and Drama',
-      releaseDate: new Date(2016),
+      releaseDate: new Date(2016).toISOString(),
     });
-
-
-
   });
 });

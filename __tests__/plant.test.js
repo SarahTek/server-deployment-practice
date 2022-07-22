@@ -44,10 +44,3 @@ describe('Plant', () => {
 
   });
 });
-
-
-
-// const res = {};
-// const next = jest.fn();
-// Plant(req, res, next);
-// expect(next).toHaveBeenCalled();

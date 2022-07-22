@@ -14,7 +14,7 @@
 
 - [Lab 01](https://github.com/SarahTek/server-deployment-practice/pull/1)
 - [Lab 02](https://github.com/SarahTek/server-deployment-practice/pull/5)
-- [Lab 03](https://github.com/SarahTek/server-deployment-practice/pulls)
+- [Lab 03](https://github.com/SarahTek/server-deployment-practice/pull/10)
 ## GitHub Actions
 
 - [Lab 02](https://github.com/SarahTek/server-deployment-practice/actions)
