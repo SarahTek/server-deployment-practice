@@ -37,7 +37,7 @@ const updateMovie = async (req, res ) => {
         id: req.params.id,
       },
     });
-  movieUpdate.nameOfMovie = req.body.nameOfMovie,
+  movieUpdate.nameOfMovie =  req.body.nameOfMovie
   movieUpdate.typeOfMovie= req.body.typeOfMovie,
   movieUpdate.releaseDate= req.body.releaseDate,
   await movieUpdate.save();
