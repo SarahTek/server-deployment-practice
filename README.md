@@ -14,11 +14,11 @@
 
 - [Lab 01](https://github.com/SarahTek/server-deployment-practice/pull/1)
 - [Lab 02](https://github.com/SarahTek/server-deployment-practice/pull/5)
-
+- [Lab 03](https://github.com/SarahTek/server-deployment-practice/pulls)
 ## GitHub Actions
 
 - [Lab 02](https://github.com/SarahTek/server-deployment-practice/actions)
-
+- [Lab 03](https://github.com/SarahTek/server-deployment-practice/actions)
 ## Environment Setup
 
 - .env `PORT=3000`
