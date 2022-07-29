@@ -3,14 +3,14 @@
 const express = require('express');
 const {logger} = require('./middleware/logger');
 require('./db');
-const { db } = require('./db');
+const { db, Plant, Movie } = require('./db');
 
 const {validator} = require ('./middleware/validator');
-const { createMovie, listMovies, getMovie, updateMovie, deleteMovie } = require('./routes/movie');
-const { createPlant, listPlant, getPlant, updatePlant, deletePlant } = require('./routes/plant');
-
+const Collection = require('../src/models/collection-class');
 const {makeError} = require('./error-handlers/404');
 const {serverError} = require('./error-handlers/500');
+// const { plant } = require('./models/plantModels');
+// const { movie } = require('./models/movieModels');
 
 
 const app = express();
@@ -38,17 +38,10 @@ app.get('/data', data);
 app.get('/person/:name', validator, person);
 app.get('/person', person);
 
-app.post('/movie',createMovie);
-app.get('/movie', listMovies);
-app.get('/movie/:id', getMovie);
-app.put('/movie/:id', updateMovie);
-app.delete('/movie/:id', deleteMovie);
 
-app.post('/plant',createPlant);
-app.get('/plant', listPlant);
-app.get('/plant/:id', getPlant);
-app.put('/plant/:id', updatePlant);
-app.delete('/plant/:id', deletePlant);
+new Collection(Plant, app, 'plant');
+new Collection(Movie, app, 'movie');
+
 
 app.use('*', makeError);
 app.use(serverError);

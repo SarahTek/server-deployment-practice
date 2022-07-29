@@ -37,5 +37,6 @@
 ## Collaborators
 
 - Martha Quintanilla-Ramirez
+- Tony Regalado
 - TA Justin Hamerly
 - TA Ben Mills

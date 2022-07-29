@@ -27,32 +27,17 @@ const db = new Sequelize(connection_string, {
     },
   });
 
-//Define our models
-// const User = db.define('User', {
-//   username: DataTypes.STRING,
-//   birthday: DataTypes.DATE,
-// });
+  db.sync();
 
-// const Movie = db.define('Movie', {
-//   nameOfMovie:  DataTypes.STRING,
-//   typeOfMovie:  DataTypes.STRING,
-//   releaseDate:  DataTypes.DATE,
-// });
+  module.exports = {
+      db,
+      Movie: movie(db),
+      Plant: plant(db),
 
-// const Plant = db.define('Plant', {
-//   name: DataTypes.STRING,
-//   size: DataTypes.STRING,
-//   color: DataTypes.STRING,
-// });
-
-// IN DEVELOPMENT ONLY!
+    };
 
 
-db.sync();
 
-module.exports = {
-  db,
-  Movie: movie(db),
-  Plant: plant(db),
 
-};
+
+   

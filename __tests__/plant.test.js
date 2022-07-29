@@ -1,3 +1,4 @@
+// const { response } = require('express');
 const supertest = require ('supertest');
 const { db } = require('../src/db');
 const server = require('../src/server');
@@ -39,6 +40,17 @@ describe('Plant', () => {
       color: 'green',
       size: 'medium',
     });
+
+    it ('update a plant with their id', async () => {
+
+    });
+
+    it ('deleted a plant', async () => {
+      const newId = plantReq.body.id;
+      const deletedPlant = await request.delete(newId);
+      expect(deletedPlant.status).toBe(200);
+    });
+
 
 
 
