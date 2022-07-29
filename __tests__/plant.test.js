@@ -1,20 +1,58 @@
-const { Plant } = require('../src/models/plant');
+// const { response } = require('express');
+const supertest = require ('supertest');
+const { db } = require('../src/db');
+const server = require('../src/server');
+const request = supertest(server.app);
 
 describe('Plant', () => {
-  it('logs via console.log', () => {
-    jest.spyOn(console, 'log').mockImplementation();
-    const req = { method: 'GET', url: '/' };
-    const res = {};
-    const next = () => {};
-
-    Plant(req, res, next);
-    expect(console.log).toHaveBeenCalledWith('GET', '/');
+  beforeEach(async () => {
+    await db.sync();
   });
-  it( 'calls', () => {
-    const req = { method: 'GET', url: '/' };
-    const res = {};
-    const next = jest.fn();
-    Plant(req, res, next);
-    expect(next).toHaveBeenCalled();
+
+  it ('create a plant', async () => {
+    let response = await request.post('/plant').send({
+      name: 'strelitzia nicolai',
+      color: 'green',
+      size: 'medium',
+
+    });
+    expect(response.status).toBe(200);
+    expect(response.body).toMatchObject({
+      name: 'strelitzia nicolai',
+      color: 'green',
+      size: 'medium',
+    });
+  });
+
+  it( 'gets a plant with their Id', async () => {
+    let plantReq = await request.post('/plant').send({
+      name: 'strelitzia nicolai',
+      color: 'green',
+      size: 'medium',
+    });
+    expect(plantReq.status).toBe(200);
+    const newId = plantReq.body.id;
+    let newRes = await request.get(`/plant/${newId}`);
+    expect(newRes.status).toBe(200);
+    expect(newRes.body).toMatchObject({
+      id: newId,
+      name: 'strelitzia nicolai',
+      color: 'green',
+      size: 'medium',
+    });
+
+    it ('update a plant with their id', async () => {
+
+    });
+
+    it ('deleted a plant', async () => {
+      const newId = plantReq.body.id;
+      const deletedPlant = await request.delete(newId);
+      expect(deletedPlant.status).toBe(200);
+    });
+
+
+
+
   });
 });
