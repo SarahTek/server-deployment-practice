@@ -41,15 +41,15 @@ describe('Plant', () => {
       size: 'medium',
     });
 
-    it ('update a plant with their id', async () => {
+    // it ('update a plant with their id', async () => {
 
-    });
+    // });
 
-    it ('deleted a plant', async () => {
-      const newId = plantReq.body.id;
-      const deletedPlant = await request.delete(newId);
-      expect(deletedPlant.status).toBe(200);
-    });
+    // it ('deleted a plant', async () => {
+    //   const newId = plantReq.body.id;
+    //   const deletedPlant = await request.delete(newId);
+    //   expect(deletedPlant.status).toBe(200);
+    // });
 
 
 
